@@ -17,6 +17,17 @@ def evaluar_ensayo(ensayo, tipo):
                   "Criterios de evaluación: claridad, precisión y coherencia. "
                   "Señalar los aspectos positivos y negativos y dar una calificación.")
 
+        # Obtener el número de párrafos en el ensayo
+num_parrafos = ensayo.count("\n")
+
+# Si el número de párrafos es menor a 5, mostrar un mensaje de error
+if num_parrafos < 5:
+    st.error("El ensayo debe tener al menos 5 párrafos.")
+    return
+
+# Si el número de párrafos es 5 o más, continuar con la evaluación del ensayo
+
+
     completions = openai.Completion.create(engine=model_engine, prompt=prompt, max_tokens=1024, n=1, stop=None,
                                            temperature=0.5)
     respuesta = completions.choices[0].text
